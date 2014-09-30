@@ -30,7 +30,7 @@ Buttercoin.prototype.buildUrl = function (endpoint) {
 };
 
 Buttercoin.prototype.signUrl = function (urlString, timestamp) {
-  urlString = new Buffer(timestamp + urlString, 'UTF-8').toString('base64');
+  urlString = new Buffer(timestamp + urlString, 'utf-8').toString('base64');
   var signedHash = crypto.createHmac('sha256', this.apiSecret).update(urlString).digest('base64');
   return signedHash;
 };
@@ -100,6 +100,7 @@ Buttercoin.prototype.getKey = function (timestamp, callback) {
 };
 
 Buttercoin.prototype.getBalances = function (timestamp, callback) {
+
   if (arguments.length === 1) {
     callback = timestamp;
     timestamp = undefined;
